@@ -111,7 +111,7 @@ public class RawInputMod {
                     }
                 }
 
-                if (acceptingInput.get()) {
+                if (acceptingInput.get() && shouldAcceptGameInput()) {
                     if (totalDx != 0) {
                         dx.addAndGet(totalDx);
                     }
@@ -185,6 +185,15 @@ public class RawInputMod {
 
         if (!value) {
             clearDeltas();
+        }
+    }
+
+    public static boolean shouldAcceptGameInput() {
+        try {
+            Minecraft mc = Minecraft.getMinecraft();
+            return mc != null && mc.currentScreen == null && mc.inGameHasFocus;
+        } catch (Exception e) {
+            return false;
         }
     }
 

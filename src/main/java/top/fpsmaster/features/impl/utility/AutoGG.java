@@ -21,7 +21,7 @@ public class AutoGG extends Module {
     private final NumberSetting delay = new NumberSetting("DelayToPlay", 5, 0, 10, 1, autoPlay::getValue);
     private final TextSetting message = new TextSetting("Message", "gg");
 
-    private final ModeSetting servers = new ModeSetting("Servers", 0, "hypixel", "普通");
+    private final ModeSetting servers = new ModeSetting("Servers", 0, "hypixel", "normal");
 
     private final String[] hypixelTrigger = new String[]{
             "Reward Summary",

@@ -21,6 +21,3 @@ public class RawInput extends Module {
         rawInputMod.stop();
     }
 }
-
-
-

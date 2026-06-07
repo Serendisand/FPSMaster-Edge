@@ -104,6 +104,8 @@ public class Component {
                 rY = guiHeight - (y * guiHeight / 2f + height);
                 break;
             case CT:
+                rX = guiWidth / 2f - width * scale / 2f;
+                rY = y * guiHeight / 2f;
                 break;
         }
         return new float[]{rX, rY};
@@ -129,7 +131,7 @@ public class Component {
             if (Hover.is(rX, rY, scaledWidth, scaledHeight, mouseX, mouseY) || drag) {
                 if (Utility.mc.currentScreen instanceof MainPanel && ((MainPanel) Utility.mc.currentScreen).hasPointerCapture())
                     return;
-                if (allowScale) {
+                if (allowScale && ClientSettings.isZoomBindDown()) {
                     int dWheel = Mouse.getDWheel();
                     if (dWheel > 0) scaleUp();
                     else if (dWheel < 0) scaleDown();
@@ -208,9 +210,9 @@ public class Component {
                 break;
             }
 
-            case CT: {
-
-            }
+            case CT:
+                position = Position.CT;
+                break;
         }
 
         if (changeX < 0f || changeX + width * scale > guiWidth) {

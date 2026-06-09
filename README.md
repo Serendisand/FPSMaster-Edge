@@ -20,29 +20,6 @@ FPSMaster 是一个免费、强大的 Minecraft PvP 客户端。
 
  如果您希望参与到开发中，欢迎您加入开发者群聊：1097885201（只要您有参与的意愿，无论是否有代码贡献，都可以加入）
 
-## CI/CD 发布
-
-Edge 已接入 GitHub Actions 自动发版流程。
-
-- 所有 `pull_request` 和命中的 `push` 都会执行构建校验。
-- `canary`、`beta`、`release` 分支命中时，会自动创建 GitHub Release，并调用后端发布接口登记版本。
-- `nightly` 改为 GitHub Actions 定时任务每日执行一次，仅当 `main` 自上一次 nightly 发布后有新提交时才会构建并发布。
-
-分支到更新通道的映射：
-
-- 定时任务基于 `main` -> `nightly`
-- `canary`、`canary/*` -> `canary`
-- `beta`、`beta/*` -> `beta`
-- `release`、`release/*` -> `release`
-
-GitHub 仓库需要配置以下 Secrets：
-
-- `FPSMASTER_CI_API_BASE_URL`：后端 API 地址
-- `FPSMASTER_CI_UPLOAD_TOKEN`：后端配置项 `fps.launcher.ci-upload-token`
-
-工作流使用 `build/libs/*.jar` 中的 remap jar 作为发布产物，回调接口为 `POST /api/v1/launcher/releases/ci`，其中 `productCode` 固定为 `edge`。
-
-
 ## 开源许可证
 本项目采用 GPL-3.0 许可证。详情请参阅 [LICENSE](LICENSE) 文件。
 

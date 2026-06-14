@@ -24,60 +24,12 @@ public class LevelTag extends Module {
 
     public static boolean using = false;
     public static final BooleanSetting showSelf = new BooleanSetting("ShowSelf", true);
-    public static final BooleanSetting health = new BooleanSetting("Health", true);
     public static final BooleanSetting diableBackground = new BooleanSetting("DisableBackground", false);
     public static final ColorSetting backgroundColor = new ColorSetting("BackgroundColor", new Color(0, 0, 0, 50), () -> !diableBackground.getValue());
 
     public LevelTag() {
         super("Nametags", Category.Utility);
-        addSettings(showSelf, health, diableBackground, backgroundColor);
-    }
-
-    public static void renderHealth(Entity entityIn, String str, double x, double y, double z, int maxDistance) {
-        if (!using) {
-            return;
-        }
-
-        if (!str.contains(entityIn.getName()) || !(entityIn instanceof EntityPlayer)) {
-            return;
-        }
-
-        if (str.contains("[NPC]")) {
-            return;
-        }
-
-        double d = entityIn.getDistanceSqToEntity(mc.getRenderManager().livingPlayer);
-
-        if (d < 100) {
-            float f = 1.6F;
-            float g = 0.016666668F * f;
-
-            GlStateManager.pushMatrix();
-            GlStateManager.translate((float) x + 0.0F, (float) y + entityIn.height + 0.5F, (float) z);
-            GL11.glNormal3f(0.0F, 1.0F, 0.0F);
-
-            /*
-             * Nametag billboard rotation.
-             * Make the tag always face the current camera.
-             */
-            GlStateManager.rotate(-mc.getRenderManager().playerViewY, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotate(mc.getRenderManager().playerViewX, 1.0F, 0.0F, 0.0F);
-
-            GlStateManager.scale(-g, -g, g);
-            GlStateManager.disableLighting();
-            GlStateManager.depthMask(false);
-            GlStateManager.disableDepth();
-            GlStateManager.enableBlend();
-            GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-
-            GlStateManager.disableTexture2D();
-            GlStateManager.enableTexture2D();
-
-            GlStateManager.enableLighting();
-            GlStateManager.disableBlend();
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.popMatrix();
-        }
+        addSettings(showSelf, diableBackground, backgroundColor);
     }
 
     public static void renderName(Entity entityIn, String str, double x, double y, double z, int maxDistance) {

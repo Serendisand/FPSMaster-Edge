@@ -20,13 +20,21 @@ public class TextSettingRender extends SettingRender<TextSetting> {
         super(setting);
         this.mod = mod;
         TextField inputBox = new TextField(FPSMaster.fontManager.s16, false, "输入名称", -1, ClickGuiTheme.textFieldBg().getRGB(), 1500);
-        inputBox.setText(setting.getValue());
+        String value = setting.getValue();
+        if (isPlayTimeLabel() && (value == null || value.trim().isEmpty())) {
+            value = getPlayTimeDefaultLabel();
+            setting.setValue(value);
+        }
+        inputBox.setText(value);
         input = new BoundTextFieldControl(inputBox, new SettingBinding<>(setting));
     }
 
     @Override
     public void render(ScaledGuiScreen screen, float x, float y, float width, float height, float mouseX, float mouseY, boolean custom) {
         TextField inputBox = input.getTextField();
+        if (isPlayTimeLabel() && (setting.getValue() == null || setting.getValue().trim().isEmpty())) {
+            setting.setValue(getPlayTimeDefaultLabel());
+        }
         inputBox.backGroundColor = ClickGuiTheme.textFieldBg().getRGB();
         inputBox.fontColor = ClickGuiTheme.textFieldText().getRGB();
         String text = FPSMaster.i18n.get((mod.name + "." + setting.name).toLowerCase(Locale.getDefault()));
@@ -41,6 +49,15 @@ public class TextSettingRender extends SettingRender<TextSetting> {
                 mouseY
         );
         this.height = 24f;
+    }
+
+    private boolean isPlayTimeLabel() {
+        return "PlayTime".equals(mod.name) && "Label".equals(setting.name);
+    }
+
+    private String getPlayTimeDefaultLabel() {
+        String value = FPSMaster.i18n.get("playtime.defaultlabel");
+        return "playtime.defaultlabel".equals(value) ? "游玩时间：" : value;
     }
 
     @Override

@@ -23,6 +23,7 @@ import top.fpsmaster.modules.config.migration.ConfigMigration;
 import top.fpsmaster.modules.config.migration.ConfigMigrationRegistry;
 import top.fpsmaster.modules.logger.ClientLogger;
 import top.fpsmaster.modules.shortcut.Shortcut;
+import top.fpsmaster.modules.statistics.TelemetryIdentityStatistics;
 import top.fpsmaster.ui.custom.Component;
 import top.fpsmaster.ui.custom.Position;
 import top.fpsmaster.utils.world.ItemsUtil;
@@ -60,7 +61,6 @@ public class ConfigManager {
         client.addProperty("oobeCompleted", configure.oobeCompleted);
         client.addProperty("antiCheatEnabled", configure.antiCheatEnabled);
         client.addProperty("anonymousDataEnabled", configure.anonymousDataEnabled);
-        client.addProperty("telemetryInstanceId", configure.telemetryInstanceId);
         client.addProperty("classicBackgroundColor", configure.classicBackgroundColor);
         client.addProperty("classicBackgroundHue", configure.classicBackgroundHue);
         client.addProperty("classicBackgroundSaturation", configure.classicBackgroundSaturation);
@@ -214,9 +214,9 @@ public class ConfigManager {
                 configure.antiCheatEnabled = !client.has("antiCheatEnabled") || client.get("antiCheatEnabled").getAsBoolean();
                 // Telemetry defaults to false (opt-in for privacy compliance)
                 configure.anonymousDataEnabled = client.has("anonymousDataEnabled") && client.get("anonymousDataEnabled").getAsBoolean();
-                configure.telemetryInstanceId = client.has("telemetryInstanceId")
-                        ? client.get("telemetryInstanceId").getAsString()
-                        : UUID.randomUUID().toString();
+                if (client.has("telemetryInstanceId")) {
+                    TelemetryIdentityStatistics.migrateLegacyInstanceId(client.get("telemetryInstanceId").getAsString());
+                }
                 if (client.has("classicBackgroundColor")) {
                     configure.classicBackgroundColor = client.get("classicBackgroundColor").getAsInt();
                 }
@@ -243,8 +243,8 @@ public class ConfigManager {
                     configure.classicBackgroundBrightness = converted.brightness;
                     configure.classicBackgroundAlpha = converted.alpha;
                 }
-                if (configure.telemetryInstanceId == null || configure.telemetryInstanceId.trim().isEmpty()) {
-                    configure.telemetryInstanceId = UUID.randomUUID().toString();
+                if (configure.classicBackgroundAlpha < 0f || configure.classicBackgroundAlpha > 1f) {
+                    configure.classicBackgroundAlpha = Math.max(0f, Math.min(1f, configure.classicBackgroundAlpha));
                 }
             }
 

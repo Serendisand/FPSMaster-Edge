@@ -10,6 +10,7 @@ import net.minecraft.util.Session;
 import top.fpsmaster.FPSMaster;
 import top.fpsmaster.modules.config.Configure;
 import top.fpsmaster.modules.logger.ClientLogger;
+import top.fpsmaster.modules.statistics.TelemetryIdentityStatistics;
 import top.fpsmaster.utils.io.HttpRequest;
 
 import java.io.IOException;
@@ -163,7 +164,7 @@ public class EdgeTelemetryReporter {
             return null;
         }
 
-        String sessionId = normalize(configure.telemetryInstanceId);
+        String sessionId = normalize(TelemetryIdentityStatistics.getInstanceId());
         if (sessionId == null) {
             return null;
         }
@@ -195,7 +196,7 @@ public class EdgeTelemetryReporter {
             return null;
         }
 
-        String sessionId = normalize(configure.telemetryInstanceId);
+        String sessionId = normalize(TelemetryIdentityStatistics.getInstanceId());
         if (sessionId == null) {
             return null;
         }
@@ -221,7 +222,7 @@ public class EdgeTelemetryReporter {
             return null;
         }
 
-        String sessionId = normalize(configure.telemetryInstanceId);
+        String sessionId = normalize(TelemetryIdentityStatistics.getInstanceId());
         if (sessionId == null) {
             return null;
         }

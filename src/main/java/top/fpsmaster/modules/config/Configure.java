@@ -6,7 +6,6 @@ public class Configure {
     public boolean oobeCompleted = false;
     public boolean antiCheatEnabled = true;
     public boolean anonymousDataEnabled = true;
-    public String telemetryInstanceId = "";
     public int classicBackgroundColor = 0xFF000000;
     public float classicBackgroundHue = 0f;
     public float classicBackgroundSaturation = 0f;

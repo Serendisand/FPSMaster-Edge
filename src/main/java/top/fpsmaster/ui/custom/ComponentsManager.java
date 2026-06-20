@@ -36,6 +36,7 @@ public class ComponentsManager {
         addComponentSafely("MiniMapComponent", MiniMapComponent::new);
         addComponentSafely("SprintComponent", SprintComponent::new);
         addComponentSafely("BlockIndicatorComponent", BlockIndicatorComponent::new);
+        addComponentSafely("PlayTimeComponent", PlayTimeComponent::new);
         addComponentSafely("ItemCountDisplayComponent", ItemCountDisplayComponent::new);
     }
 

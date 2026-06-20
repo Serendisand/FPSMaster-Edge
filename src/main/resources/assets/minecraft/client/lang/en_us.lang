@@ -542,6 +542,21 @@ blockindicator.backgroundcolor=Background Color
 blockindicator.panelcolor=Block Panel Color
 blockindicator.accentcolor=Accent Color
 
+playtime=Play Time
+playtime.desc=Track and display your play time
+playtime.displaymode=Display Content
+playtime.displaymode.default=Default
+playtime.displaymode.today=Today
+playtime.displaymode.permanent=Permanent
+playtime.label=Display Text
+playtime.textcolor=Text Color
+playtime.betterfont=Better Font
+playtime.fontshadow=Font Shadow
+playtime.defaultlabel=Play Time:
+playtime.unit.seconds=s
+playtime.unit.minutes=min
+playtime.unit.hours=h
+
 hitboxes=Hitboxes
 hitboxes.desc=Show hitboxes
 hitboxes.color=Color

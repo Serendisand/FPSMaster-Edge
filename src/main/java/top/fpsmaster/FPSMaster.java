@@ -16,6 +16,7 @@ import top.fpsmaster.modules.i18n.Language;
 import top.fpsmaster.modules.logger.ClientLogger;
 import top.fpsmaster.modules.music.MusicPlayer;
 import top.fpsmaster.modules.music.netease.NeteaseApi;
+import top.fpsmaster.modules.statistics.PlayTimeStatistics;
 import top.fpsmaster.ui.custom.ComponentsManager;
 import top.fpsmaster.utils.git.GitInfo;
 import top.fpsmaster.utils.io.FileUtils;
@@ -141,6 +142,7 @@ public class FPSMaster {
 
 
     public void shutdown() {
+        PlayTimeStatistics.flush();
         telemetryReporter.shutdown();
         async.close();
         try {

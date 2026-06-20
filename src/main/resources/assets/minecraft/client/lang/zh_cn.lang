@@ -542,6 +542,21 @@ blockindicator.backgroundcolor=背景颜色
 blockindicator.panelcolor=方块面板颜色
 blockindicator.accentcolor=强调色
 
+playtime=游玩时间
+playtime.desc=统计并显示你的游玩时间
+playtime.displaymode=显示内容
+playtime.displaymode.default=默认
+playtime.displaymode.today=今日模式
+playtime.displaymode.permanent=永久模式
+playtime.label=显示文本
+playtime.textcolor=文字颜色
+playtime.betterfont=更好的字体
+playtime.fontshadow=字体阴影
+playtime.defaultlabel=游玩时间：
+playtime.unit.seconds=秒
+playtime.unit.minutes=分钟
+playtime.unit.hours=小时
+
 hitboxes=碰撞箱
 hitboxes.desc=显示碰撞箱
 hitboxes.color=颜色

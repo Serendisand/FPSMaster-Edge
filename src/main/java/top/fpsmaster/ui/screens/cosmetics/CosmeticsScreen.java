@@ -44,7 +44,7 @@ public final class CosmeticsScreen extends ScaledGuiScreen {
     private final float[] preview = new float[5];
     private final List<ItemPreview> itemPreviews = new ArrayList<>();
     /** 商品列表的 GL 裁剪框，缩略图 2D 之后才画，得在回调那一刻抄下来照着裁。 */
-    private final IntBuffer previewScissor = BufferUtils.createIntBuffer(4);
+    private final IntBuffer previewScissor = BufferUtils.createIntBuffer(16);
     private boolean previewScissorCaptured;
     private boolean previewScissorEnabled;
 
